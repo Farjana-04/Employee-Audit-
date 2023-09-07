@@ -177,30 +177,28 @@ function addEmployee() {
     });
 }
 
-// function viewRoles() {
-//   dbConnection.query("SELECT * FROM roles", function (err, res) {
-//     if (err) throw err;
-//     console.table(res);
-//     startQuestion();
-//   });
-// }
+function viewRoles() {
+  dbConnection.query("SELECT * FROM roles", function (err, res) {
+    if (err) throw err;
+    console.table(res);
+    startQuestion();
+  });
+}
 
-// function viewDepartments() {
-//   // console.log("departments table")
-//   dbConnection.query("SELECT * FROM departments", function (err, res) {
-//     if (err) throw err;
-//     console.table(res);
-//     startQuestion();
-//   });
-
-// }
-// function viewEmployees() {
-//   dbConnection.query("SELECT * FROM employees", function (err, res) {
-//     if (err) throw err;
-//     console.table(res);
-//     startQuestion();
-//   });
-// }
+function viewDepartments() {
+  dbConnection.query("SELECT * FROM departments", function (err, res) {
+    if (err) throw err;
+    console.table(res);
+    startQuestion();
+  });
+}
+function viewEmployees() {
+  dbConnection.query("SELECT * FROM employees", function (err, res) {
+    if (err) throw err;
+    console.table(res);
+    startQuestion();
+  });
+}
 
 // // Updating Roles
 
