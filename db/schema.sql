@@ -1,6 +1,6 @@
--- Drops the task_saver_db if it already exists --
+-- Drops the task if it already exists --
 DROP DATABASE IF EXISTS employees_db;
--- Create the database task_saver_db and specified it for use
+-- Create the database task and specified it for use
 CREATE DATABASE employees_db;
 
 USE employees_db;
