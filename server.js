@@ -77,66 +77,66 @@ function startQuestion() {
 }
 
 
-// function addEmployeeDepartment() {
-//   inquirer
-//     .prompt(
-//       {
-//         name: 'name',
-//         message: "What is the department's name?",
-//         type: 'input'
-//       }
-//     ).then(function ({ name }) {
-//       dbConnection.query(`INSERT INTO departments ( department_name) VALUES (?)`, [name], function (err, data) {
-//         if (err) throw err;
-//         console.log(`Added`)
-//         startQuestion();
-//       })
-//     })
-// }
-// // Adding roles
-// function addEmployeeRoles() {
-//   let department = []
+function addEmployeeDepartment() {
+  inquirer
+    .prompt(
+      {
+        name: 'name',
+        message: "What is the department's name?",
+        type: 'input'
+      }
+    ).then(function ({ name }) {
+      dbConnection.query(`INSERT INTO departments ( department_name) VALUES (?)`, [name], function (err, data) {
+        if (err) throw err;
+        console.log(`Added`)
+        startQuestion();
+      })
+    })
+}
+// Adding roles
+function addEmployeeRoles() {
+  let department = []
 
-//   dbConnection.query(`SELECT * FROM departments`, function (err, data) {
-//     if (err) throw err;
+  dbConnection.query(`SELECT * FROM departments`, function (err, data) {
+    if (err) throw err;
 
-//     for (let i = 0; i < data.length; i++) {
-//       department.push(data[i].department_name)
+    for (let i = 0; i < data.length; i++) {
+      department.push(data[i].department_name)
 
-//     }
-//     console.log(department)
-//     inquirer.prompt([
-//       {
-//         name: "title",
-//         type: "input",
-//         message: "Enter the title of the employee",
+    }
+    console.log(department)
+    inquirer.prompt([
+      {
+        name: "title",
+        type: "input",
+        message: "Enter the title of the employee",
 
-//       },
-//       {
-//         name: "salary",
-//         type: "input",
-//         message: "Enter employee salary",
+      },
+      {
+        name: "salary",
+        type: "input",
+        message: "Enter employee salary",
 
-//       },
-//       {
-//         name: "department_id",
-//         type: "input",
-//         message: "Enter employee department name",
+      },
+      {
+        name: "department_id",
+        type: "input",
+        message: "Enter employee department name",
 
-//       }
-//     ])
-//       .then(function ({ title, salary, department_id }) {
-//         let index = department.indexOf(department_id)
+      }
+    ])
+      .then(function ({ title, salary, department_id }) {
+        let index = department.indexOf(department_id)
 
-//         dbConnection.query(`INSERT INTO roles (title, salary, department_id) VALUES (?, ?, ?)`, [title, salary, index], function (err, data) {
-//           if (err) throw err;
-//           console.log(`Added`)
-//           startQuestion();
+        dbConnection.query(`INSERT INTO roles (title, salary, department_id) VALUES (?, ?, ?)`, [title, salary, index], function (err, data) {
+          if (err) throw err;
+          console.log(`Added`)
+          startQuestion();
 
-//         })
-//       })
-//   })
-// }
+        })
+      })
+  })
+}
 // function addEmployee() {
 
 //   inquirer
