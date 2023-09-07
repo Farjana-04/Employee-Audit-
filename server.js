@@ -14,67 +14,67 @@ const dbConnection = mysql.createConnection(
     password: 'Tahiya416@',
     database: 'employees_db'
   });
-// console.log(`Connected to the employees_db database.`)
+console.log(`Connected to the employees_db database.`)
 
-// dbConnection.connect(function (err) {
-//   if (err) {
-//     console.log("connected to db as id " + dbConnection.threadId);
-//   }
-//   startQuestion();
+dbConnection.connect(function (err) {
+  if (err) {
+    console.log("connected to db as id " + dbConnection.threadId);
+  }
+  startQuestion();
 
-// });
+});
 
-// // 
-// function startQuestion() {
-//   inquirer
-//     .prompt({
-//       name: "userTask",
-//       type: "list",
-//       message: "What would you like to do?",
-//       choices:
-//         [
-//           "View All Employees",
-//           "View all Department",
-//           "View all role",
-//           "Add an Employee",
-//           "Add a Department",
-//           "Add a Role",
-//           "Update an employee Role",
-//           "End"
-//         ]
-//     })
+// 
+function startQuestion() {
+  inquirer
+    .prompt({
+      name: "userTask",
+      type: "list",
+      message: "What would you like to do?",
+      choices:
+        [
+          "View All Employees",
+          "View all Department",
+          "View all role",
+          "Add an Employee",
+          "Add a Department",
+          "Add a Role",
+          "Update an employee Role",
+          "End"
+        ]
+    })
     
-//     .then(function (answer) {
-//       // based on their answer, either they will add new employees or view it. 
-//       if (answer.userTask === "Add an Employee") {
-//         addEmployee();
-//       }
-//       else if (answer.userTask === "View all role") {
-//         viewRoles();
-//       } else if (answer.userTask === "View all Department") {
-//         viewDepartments();
-//       }
-//       else if (answer.userTask === "View All Employees") {
-//         viewEmployees();
-//       }
-//       else if (answer.userTask === "Add a Role") {
-//         addEmployeeRoles();
-//       }
-//       else if (answer.userTask === "Add a Department") {
-//         addEmployeeDepartment();
-//       }
-//       else if (answer.userTask === "Update an employee Role") {
-//         updateEmployeeRoles();
-//       }
+    .then(function (answer) {
+      // based on their answer, either they will add new employees or view it. 
+      if (answer.userTask === "Add an Employee") {
+        addEmployee();
+      }
+      else if (answer.userTask === "View all role") {
+        viewRoles();
+      } else if (answer.userTask === "View all Department") {
+        viewDepartments();
+      }
+      else if (answer.userTask === "View All Employees") {
+        viewEmployees();
+      }
+      else if (answer.userTask === "Add a Role") {
+        addEmployeeRoles();
+      }
+      else if (answer.userTask === "Add a Department") {
+        addEmployeeDepartment();
+      }
+      else if (answer.userTask === "Update an employee Role") {
+        updateEmployeeRoles();
+      }
 
-//       else {
-//         dbConnection.end();
-//         //   if(answer.userTask === "View Departments") {
-//         //     viewDepartments();
+      else {
+        dbConnection.end();
+        //   if(answer.userTask === "View Departments") {
+        //     viewDepartments();
 
-//       }
-//     });
-// }
+      }
+    });
+}
 
 
 // function addEmployeeDepartment() {
