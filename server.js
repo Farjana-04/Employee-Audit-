@@ -200,40 +200,40 @@ function viewEmployees() {
   });
 }
 
-// // Updating Roles
+// Updating Roles
 
-// function updateEmployeeRoles() {
-//   console.log("update employee roles");
-//   inquirer.prompt([
-//     {
-//       name: "employee_id",
-//       type: "list",
-//       message: "Choose employee id",
-//       choices: [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
-//     },
-//     {
-//       name: "role_id",
-//       type: "list",
-//       message: "Update employee role id",
-//       choices: [1, 2, 3, 4, 5, 6, 7, 8, 9]
-//     }
-//   ])
-//     .then(function (answer) {
-//       dbConnection.query(
-//         //SQL UPDATE statement. It's telling the database to modify records in the "employees" table.
-//         "UPDATE employees SET role_id = ? WHERE employee_id = ?",
-//         //is an array of values that correspond(match) to the placeholders in the SQL query:
-//         [answer.role_id, answer.employee_id],
-//         function (err, response) {
-//           if (err) {
-//             console.log(err);
-//           } else {
-//             console.log(response);
-//           }
-//           startQuestion();
-//         }
-//       );
-//     });
-// }
+function updateEmployeeRoles() {
+  console.log("update employee roles");
+  inquirer.prompt([
+    {
+      name: "employee_id",
+      type: "list",
+      message: "Choose employee id",
+      choices: [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+    },
+    {
+      name: "role_id",
+      type: "list",
+      message: "Update employee role id",
+      choices: [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    }
+  ])
+    .then(function (answer) {
+      dbConnection.query(
+        //SQL UPDATE statement. It's telling the database to modify records in the "employees" table.
+        "UPDATE employees SET role_id = ? WHERE employee_id = ?",
+        //is an array of values that correspond(match) to the placeholders in the SQL query:
+        [answer.role_id, answer.employee_id],
+        function (err, response) {
+          if (err) {
+            console.log(err);
+          } else {
+            console.log(response);
+          }
+          startQuestion();
+        }
+      );
+    });
+}
 
 
