@@ -137,45 +137,45 @@ function addEmployeeRoles() {
       })
   })
 }
-// function addEmployee() {
+function addEmployee() {
 
-//   inquirer
-//     .prompt([
-//       {
-//         name: 'first_name',
-//         message: "Enter the employees First Name",
-//         type: 'input'
-//       },
-//       {
-//         name: 'last_name',
-//         message: 'Enter the employesss last name',
-//         type: 'input',
-//       },
-//       {
-//         name: 'role_id',
-//         message: 'Enter the employees role ID?',
-//         type: 'list',
-//         choices: [2, 4, 5, 6, 8, 11]
-//       },
-//       {
-//         name: 'manager_id',
-//         message: "Who is the employees manager?",
-//         type: 'list',
-//         choices: [1, 2, 3]
-//       }
-//     ])
-//     .then(function (answer) {
-//       dbConnection.query("insert into employees(first_name, last_name, role_id, manager_id) values(?, ?, ?, ?);",
-//         [answer.first_name, answer.last_name, answer.role_id, answer.manager_id], function (err, response) {
-//           if (err)
-//             (
-//               console.log(err)
-//             )
-//           console.log(response)
-//           startQuestion();
-//         })
-//     });
-// }
+  inquirer
+    .prompt([
+      {
+        name: 'first_name',
+        message: "Enter the employees First Name",
+        type: 'input'
+      },
+      {
+        name: 'last_name',
+        message: 'Enter the employesss last name',
+        type: 'input',
+      },
+      {
+        name: 'role_id',
+        message: 'Enter the employees role ID?',
+        type: 'list',
+        choices: [2, 4, 5, 6, 8, 11]
+      },
+      {
+        name: 'manager_id',
+        message: "Who is the employees manager?",
+        type: 'list',
+        choices: [1, 2, 3]
+      }
+    ])
+    .then(function (answer) {
+      dbConnection.query("insert into employees(first_name, last_name, role_id, manager_id) values(?, ?, ?, ?);",
+        [answer.first_name, answer.last_name, answer.role_id, answer.manager_id], function (err, response) {
+          if (err)
+            (
+              console.log(err)
+            )
+          console.log(response)
+          startQuestion();
+        })
+    });
+}
 
 // function viewRoles() {
 //   dbConnection.query("SELECT * FROM roles", function (err, res) {
