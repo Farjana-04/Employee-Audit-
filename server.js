@@ -1,16 +1,11 @@
 const inquirer = require('inquirer');
-// Import and require mysql2
 const mysql = require('mysql2');
-// const cTable = require('console.table');
-
 // Create connection with database(SQL)
 const dbConnection = mysql.createConnection(
   {
     host: 'localhost',
-    // MySQL username,
     user: 'root',
     port: 3306,
-    // MySQL password
     password: 'Tahiya416@',
     database: 'employees_db'
   });
@@ -24,8 +19,7 @@ dbConnection.connect(function (err) {
 
 });
 
-// 
-function startQuestion() {
+ function startQuestion() {
   inquirer
     .prompt({
       name: "userTask",
@@ -34,8 +28,8 @@ function startQuestion() {
       choices:
         [
           "View All Employees",
-          "View all Department",
-          "View all role",
+          "View all Departments",
+          "View all roles",
           "Add an Employee",
           "Add a Department",
           "Add a Role",
@@ -43,15 +37,15 @@ function startQuestion() {
           "End"
         ]
     })
-    
+
     .then(function (answer) {
-      // based on their answer, either they will add new employees or view it. 
+      
       if (answer.userTask === "Add an Employee") {
         addEmployee();
       }
-      else if (answer.userTask === "View all role") {
+      else if (answer.userTask === "View all roles") {
         viewRoles();
-      } else if (answer.userTask === "View all Department") {
+      } else if (answer.userTask === "View all Departments") {
         viewDepartments();
       }
       else if (answer.userTask === "View All Employees") {
@@ -66,17 +60,11 @@ function startQuestion() {
       else if (answer.userTask === "Update an employee Role") {
         updateEmployeeRoles();
       }
-
       else {
         dbConnection.end();
-        //   if(answer.userTask === "View Departments") {
-        //     viewDepartments();
-
-      }
+ }
     });
 }
-
-
 function addEmployeeDepartment() {
   inquirer
     .prompt(
@@ -121,7 +109,7 @@ function addEmployeeRoles() {
       {
         name: "department_id",
         type: "input",
-        message: "Enter employee department name",
+        message: "Which department this employee role belong to ",
 
       }
     ])
@@ -135,11 +123,11 @@ function addEmployeeRoles() {
 
         })
       })
-  })
+    }) 
 }
-function addEmployee() {
 
-  inquirer
+function addEmployee() {
+inquirer
     .prompt([
       {
         name: 'first_name',
@@ -176,7 +164,7 @@ function addEmployee() {
         })
     });
 }
-
+// write code for view roles, departments, employees
 function viewRoles() {
   dbConnection.query("SELECT * FROM roles", function (err, res) {
     if (err) throw err;
@@ -200,29 +188,27 @@ function viewEmployees() {
   });
 }
 
-// Updating Roles
+// Employee roles Updating 
 
 function updateEmployeeRoles() {
-  console.log("update employee roles");
   inquirer.prompt([
     {
       name: "employee_id",
       type: "list",
-      message: "Choose employee id",
+      message: "Choose the employee id",
       choices: [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
     },
     {
       name: "role_id",
       type: "list",
-      message: "Update employee role id",
+      message: "Update the employee role id",
       choices: [1, 2, 3, 4, 5, 6, 7, 8, 9]
     }
   ])
+  //the database to modify records in the "employees" table.
     .then(function (answer) {
       dbConnection.query(
-        //SQL UPDATE statement. It's telling the database to modify records in the "employees" table.
         "UPDATE employees SET role_id = ? WHERE employee_id = ?",
-        //is an array of values that correspond(match) to the placeholders in the SQL query:
         [answer.role_id, answer.employee_id],
         function (err, response) {
           if (err) {
