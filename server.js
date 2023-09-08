@@ -187,9 +187,7 @@ function viewEmployees() {
     startQuestion();
   });
 }
-
 // Employee roles Updating 
-
 function updateEmployeeRoles() {
   inquirer.prompt([
     {
