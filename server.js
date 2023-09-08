@@ -6,7 +6,7 @@ const dbConnection = mysql.createConnection(
     host: 'localhost',
     user: 'root',
     port: 3306,
-    password: 'Tahiya416@',
+    password: 'yourpassword',
     database: 'employees_db'
   });
 console.log(`Connected to the employees_db database.`)
@@ -83,49 +83,38 @@ function addEmployeeDepartment() {
 }
 // Adding roles
 function addEmployeeRoles() {
-  let department = []
-
-  dbConnection.query(`SELECT * FROM departments`, function (err, data) {
-    if (err) throw err;
-
-    for (let i = 0; i < data.length; i++) {
-      department.push(data[i].department_name)
-
-    }
-    console.log(department)
-    inquirer.prompt([
-      {
-        name: "title",
-        type: "input",
-        message: "Enter the title of the employee",
-
-      },
-      {
-        name: "salary",
-        type: "input",
-        message: "Enter employee salary",
-
-      },
-      {
-        name: "department_id",
-        type: "input",
-        message: "Which department this employee role belong to ",
-
-      }
-    ])
-      .then(function ({ title, salary, department_id }) {
-        let index = department.indexOf(department_id)
-
-        dbConnection.query(`INSERT INTO roles (title, salary, department_id) VALUES (?, ?, ?)`, [title, salary, index], function (err, data) {
-          if (err) throw err;
-          console.log(`Added`)
+  inquirer.prompt([
+    {
+      name: "title",
+      type: "input",
+      message: "Enter the title of the employee",
+    },
+    {
+      name: "salary",
+      type: "input",
+      message: "Enter employee salary",
+    },
+    {
+      name: "department_id",
+      type: "input",
+      message: "Enter the department id does this employee role belong to?",
+     }
+  ])
+    .then(function (answer) {
+      dbConnection.query(
+        "INSERT INTO roles (title, salary, department_id) VALUES (?, ?, ?);",
+        [answer.title, answer.salary, answer.department_id],
+        function (err, response) {
+          if (err) {
+            console.log(err);
+          } else {
+            console.log(response);
+          }
           startQuestion();
-
-        })
-      })
-    }) 
+        }
+      );
+    });
 }
-
 function addEmployee() {
 inquirer
     .prompt([
